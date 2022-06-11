@@ -1,5 +1,4 @@
-all:
-      g++ -std=c++17 hello.cpp -o hello
-
-clean:
-      $(RM) hello
+all:    
+  g++ hello.cpp -o app -std=c++11    
+clean:    
+  rm app
