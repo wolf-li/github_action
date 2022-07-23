@@ -1,9 +1,16 @@
-# this code is to test the codeql
 
-#include <stdio.h> 
-int main（void） {   
-  int Fred [505] = {0};   
-  Fred[634] = 87592；   
-  printf（“ Fred [634] =％d \ n”，Fred [634]）;   
-  return 0; 
-} 
+# include <iostream>
+using namespace std;
+
+int main() {
+  B *b = new B();
+
+  // dangerous part?
+  // forcing Test<B> to point to to an address of type B
+  Test<B> *test = static_cast<Test<B> *>(b);
+
+  //
+  A *a = dynamic_cast<A *>(test);
+  a->setA(10);
+  std::cout << "result: " << a->getA() << std::endl;
+}
