@@ -20,7 +20,7 @@ jobs:
       
     - name: Gzip
       run: |
-        makdir hello-word
+        mkdir hello-word
         cp hello hello-word
         tar czvf hello-word.tar.gz hello-word
     
