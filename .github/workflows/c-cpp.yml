@@ -8,16 +8,27 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
     - name: configure
       run: bash ./configure
-    - name: make
+      
+    - name: Build
       run: make
-#     - name: make check
-#       run: make check
-#     - name: make distcheck
-#       run: make distcheck
+      
+    - name: Gzip
+      run: |
+        makdir hello-word-${{ matrix.os }}
+        cp hello hello-word-${{ matrix.os }}
+        tar czvf hello-word-${{ matrix.os }}.tar.gz hello-word-${{ matrix.os }}
+    
+    - name: Upload to release
+      uses: JasonEtco/upload-to-release@master
+      with: 
+        args: hello-word-${{ matrix.os }}.tar.gz application/octet-stream
+      env:
+        GITHUB_TOKEN: ${{ secrets.DEPLOY_KEY }}
+      
+
