@@ -1,8 +1,8 @@
 name: C/C++ CI
 
 on:
-#   push:
-#     branches: [ "main" ]
+  push:
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -31,7 +31,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.DEPLOY_KEY }}
       with:
         tag_name: v${{ github.run_number }}
-        release_name:  Release V${{ github.run_name }}  
+        release_name:  Release V${{ github.run_number }}  
     
     - name: Upload to release
       id: upload-release-asset
